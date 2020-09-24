@@ -210,7 +210,7 @@ export default class SmartTableWebPart extends BaseClientSideWebPart<
         for (let f = 0; f < fields.length; f++) {
           optionVal.push({
             key:fields[f].InternalName,
-            text:fields[f].InternalName
+            text:fields[f].Title
           })
         }
         this.fieldsListCollection = optionVal;
@@ -241,7 +241,7 @@ export default class SmartTableWebPart extends BaseClientSideWebPart<
     let web = new Web(this.context.pageContext.web.absoluteUrl);
     const data = await web.lists
       .getById(this.properties.lists)
-      .fields.select("InternalName")
+      .fields.select("InternalName, Title")
       .filter(filter)
       .get();
     return data;
